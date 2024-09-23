@@ -1,0 +1,28 @@
+<!-- antennas_list.html -->
+{% extends "base.html" %}
+
+{% block title %}All Antennas{% endblock %}
+
+{% block content %}
+<h1>All Antennas</h1>
+
+{% for antenna in antennas %}
+  <div class="antenna">
+    <h2>{{ antenna.name }} ({{ antenna.type }})</h2>
+    
+{#    {% if antenna.gallery_set.all %}#}
+      <h3>Gallery:</h3>
+      <ul>
+      {% for image in antenna.gallery_images.all %}
+        <li><img src="{{ image.image.url }}" alt="Antenna Image"></li>
+      {% endfor %}
+      </ul>
+{#    {% endif %}#}
+  </div>
+{% endfor %}
+</div>
+</body>
+</html>
+
+
+{% endblock %}

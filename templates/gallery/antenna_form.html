@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}Create Antenna{% endblock %}
+
+{% block content %}
+<h1>Create Antenna</h1>
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    
+    {{ form.as_p }}
+    
+    <h2>Gallery Images:</h2>
+    {{ images.management_form }}
+    {% for image_form in images %}
+        <p>{{ image_form.image.label_tag }} {{ image_form.image }} {{ image_form.order }}</p>
+    {% endfor %}
+    
+    <button type="submit">Create Antenna</button>
+</form>
+
+{% endblock %}

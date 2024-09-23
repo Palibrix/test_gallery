@@ -1,0 +1,27 @@
+<!-- cameras_list.html -->
+{% extends "base.html" %}
+
+{% block title %}All Cameras{% endblock %}
+
+{% block content %}
+<h1>All Cameras</h1>
+
+{% for camera in cameras %}
+  <div class="camera">
+    <h2>({{ camera.type }})</h2>
+    
+{#    {% if camera.gallery_set.all %}#}
+      <h3>Gallery:</h3>
+      <ul>
+          {% for image in camera.gallery_images.all %}
+              <li><img src="{{ image.image.url }}" alt="Camera Image"></li>
+      {% endfor %}
+      </ul>
+{#    {% endif %}#}
+  </div>
+{% endfor %}
+</body>
+</html>
+
+
+{% endblock %}
