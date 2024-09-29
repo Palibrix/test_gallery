@@ -28,7 +28,7 @@ class GalleryAdmin(admin.ModelAdmin):
 @admin.register(Camera)
 class CameraAdmin(admin.ModelAdmin):
     inlines = [ImageInline]
-    list_display = ('id', 'name', 'type')
+    list_display = ('id', 'type')
 
 # @admin.register(Gallery)
 # class GalleryAdmin(admin.ModelAdmin):

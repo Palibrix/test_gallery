@@ -20,9 +20,14 @@ class Gallery(models.Model):
     def id(self):
         return self.gallery_id
 
-class BasePartModel(models.Model):
-    name = models.CharField(max_length=50, unique=True)
+class IdMixin(models.Model):
     id = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')
+
+    class Meta:
+        abstract = True
+
+class BasePartMixin(models.Model):
+    name = models.CharField(max_length=50, unique=True)
 
     class Meta:
         abstract = True
@@ -39,11 +44,11 @@ class Image(models.Model):
         unique_together = ('gallery', 'order')
 
 
-class Antenna(BasePartModel, Gallery):
+class Antenna(BasePartMixin, IdMixin, Gallery):
     type = models.CharField(max_length=50, unique=True)
 
 
-class Camera(BasePartModel, Gallery):
+class Camera(BasePartMixin, Gallery, IdMixin):
     name = None
     type = models.CharField(max_length=50, unique=True)
 
