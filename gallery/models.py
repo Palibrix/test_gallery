@@ -1,7 +1,4 @@
-from functools import reduce
-
 from django.db import models
-from django.utils.timezone import override
 
 
 def upload_to_gallery(instance, filename):
@@ -20,11 +17,13 @@ class Gallery(models.Model):
     def id(self):
         return self.gallery_id
 
+
 class IdMixin(models.Model):
     id = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')
 
     class Meta:
         abstract = True
+
 
 class BasePartMixin(models.Model):
     name = models.CharField(max_length=50, unique=True)
@@ -51,4 +50,3 @@ class Antenna(BasePartMixin, IdMixin, Gallery):
 class Camera(BasePartMixin, Gallery, IdMixin):
     name = None
     type = models.CharField(max_length=50, unique=True)
-
